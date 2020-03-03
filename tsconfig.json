@@ -11,15 +11,16 @@
             "dom"
         ],
         "types": [
-            "jest"
+            "jest",
+            "tween.js"
         ],
         "typeRoots": [
-            "node_modules/@types"
+            "node_modules/@types",
         ]
     },
     "include": [
         "src/**/*.ts",
-        "node_modules/@types"
+        "node_modules/@types",
     ],
     "exclude": [
         ".git",
