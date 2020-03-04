@@ -1,5 +1,5 @@
-import { GameObject } from "../core/gameObject";
-import { GameResMgr } from "../core/gameResManager";
+import { GameObject } from "../../framework/core/gameObject";
+import { GameResMgr } from "../../framework/core/gameResManager";
 
 
 export class TestGameObject extends GameObject {

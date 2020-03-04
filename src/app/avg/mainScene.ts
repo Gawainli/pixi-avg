@@ -1,4 +1,4 @@
-import { GameScene } from "../core/gameScene";
+import { GameScene } from "../../framework/core/gameScene";
 import { TestGameObject } from "./testGameObject";
 
 

@@ -1,6 +1,6 @@
 import { GameFramework } from "../framework/core/gameFramework";
 import { GameSceneMgr } from "../framework/core/gameSceneMgr";
-import { AvgMainScene } from "../framework/avg/mainScene";
+import { AvgMainScene } from "./avg/mainScene";
 
 export class GameApp {
     framework: GameFramework;
