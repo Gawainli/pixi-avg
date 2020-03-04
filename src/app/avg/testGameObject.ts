@@ -1,5 +1,6 @@
 import { GameObject } from "../../framework/core/gameObject";
 import { GameResMgr } from "../../framework/core/gameResManager";
+import { GameEventEmitter } from "../../framework/core/gameEventEmitter";
 
 
 export class TestGameObject extends GameObject {
@@ -45,6 +46,7 @@ export class TestGameObject extends GameObject {
                 this.splenna.y = 1920 / 2 + index * 10;
                 this.rootContainer.addChild(this.splenna);
             }
+
         });
     }
 

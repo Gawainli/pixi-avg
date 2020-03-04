@@ -1,5 +1,6 @@
 import { GameScene } from "../../framework/core/gameScene";
 import { TestGameObject } from "./testGameObject";
+import { GameEventEmitter } from "../../framework/core/gameEventEmitter";
 
 
 export class AvgMainScene extends GameScene {
