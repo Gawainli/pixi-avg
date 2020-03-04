@@ -1,8 +1,5 @@
 import { GameObject } from "./gameObject";
 
-export interface IScene extends PIXI.Container {
-
-}
 
 export class GameScene extends PIXI.Container {
 
@@ -16,32 +13,42 @@ export class GameScene extends PIXI.Container {
         this.addChild(this.rootObject.rootContainer);
     }
 
+    onInit() { }
+    onUpdate(deltaMS: number) { }
+    onStart() { }
+    onRemove() { }
+    onDestroy() { }
 
     init() {
+        this.onInit();
         GameObject.callObjFunction("onInit", this.rootObject);
     }
 
     update(deltaMS: number) {
+        this.onUpdate(deltaMS);
         GameObject.callObjFunction("onUpdate", this.rootObject, deltaMS);
     }
 
     start() {
+        this.onStart();
         GameObject.callObjFunction("onStart", this.rootObject);
     }
 
     remove() {
+        this.onRemove();
         GameObject.callObjFunction("onRemove", this.rootObject);
     }
 
     destroy() {
+        this.onDestroy();
         GameObject.callObjFunction("onDestroy", this.rootObject);
     }
 
-    addGameObject(obj: GameObject) {
-        if (obj == undefined) {
-            return;
-        }
-        this.rootObject.addChild(obj);
-    }
+    // addGameObject(obj: GameObject) {
+    //     if (obj == undefined) {
+    //         return;
+    //     }
+    //     this.rootObject.add(obj);
+    // }
 
 }

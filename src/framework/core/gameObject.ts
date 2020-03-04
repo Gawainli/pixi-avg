@@ -3,14 +3,17 @@ import { GameScene } from "./gameScene";
 export class GameObject {
     position: PIXI.Point;
     rootContainer: PIXI.Container;
-    childrens: GameObject[];
+    children: GameObject[];
     parent: GameObject;
     active: boolean;
 
-    constructor() {
+    constructor(container?: PIXI.Container) {
         this.active = true;
         this.rootContainer = new PIXI.Container();
-        this.childrens = new Array<GameObject>();
+        this.children = new Array<GameObject>();
+        if (container != undefined) {
+            this.rootContainer.addChild(container);
+        }
     }
 
 
@@ -22,46 +25,41 @@ export class GameObject {
         let fn = obj[fnName];
         if (fn != undefined) {
             fn(param);
-            obj.childrens.forEach(element => {
-                GameObject.callObjFunction(fnName, element, param);
-            })
+
         }
+        obj.children.forEach(element => {
+            GameObject.callObjFunction(fnName, element, param);
+        })
     }
 
-    static destroy(target: GameObject) {
-        if (target == undefined) {
-            return;
-        }
-        let fn = target["onDestroy"];
-        if (fn != undefined) {
-            fn();
-        }
-        target.childrens.forEach(element => {
-            GameObject.destroy(element);
-        });
-        target.removeFromParent();
-    }
+    // static destroy(target: GameObject) {
+    //     if (target == undefined) {
+    //         return;
+    //     }
+    //     let fn = target["onDestroy"];
+    //     if (fn != undefined) {
+    //         fn();
+    //     }
+    //     target.children.forEach(element => {
+    //         GameObject.destroy(element);
+    //     });
+    //     target.removeFromParent();
+    // }
 
-    addChild(child: GameObject) {
+    add(child: GameObject) {
         if (child == undefined) {
             return;
         }
-        this.childrens.push(child);
+        this.children.push(child);
         this.rootContainer.addChild(child.rootContainer);
         child.active = this.active;
+        child.parent = this;
     }
 
-    removeChild(child: GameObject) {
-        let idx = this.childrens.indexOf(child);
-        if (idx != -1) {
-            this.childrens.splice(idx, 1);
-        }
+    remove(child: GameObject) {
+        let idx = this.children.indexOf(child);
+        this.children.splice(idx, 1);
         this.rootContainer.removeChild(child.rootContainer);
-    }
-
-    removeFromParent() {
-        if (parent != undefined) {
-            this.parent.removeChild(this);
-        }
+        child.parent = null;
     }
 }

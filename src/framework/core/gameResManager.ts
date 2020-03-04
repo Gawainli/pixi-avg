@@ -80,7 +80,7 @@ export class GameResMgr {
             let key = resource.name;
             GameResMgr.resources[key] = resource;
             if (GameResMgr.cbDict.has(key)) {
-                GameResMgr.cbDict[key](key);
+                GameResMgr.cbDict.get(key)(key);
                 GameResMgr.cbDict.delete(key);
             }
         }
